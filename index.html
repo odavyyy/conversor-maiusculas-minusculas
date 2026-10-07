@@ -1,647 +1,2205 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conversor de Maiúsculas e Minúsculas - Múltiplas Opções</title>
-  <style>
-    :root {
-      --bg: #0f0f1a;
-      --card-bg: #1a1a2e;
-      --primary: #7c5cfc;
-      --primary-hover: #6a48e8;
-      --secondary: #ff6b9d;
-      --accent-teal: #2dd4bf;
-      --accent-amber: #f59e0b;
-      --text: #e8e8f0;
-      --text-muted: #a0a0b8;
-      --border: #2a2a3e;
-      --textarea-bg: #12121f;
-      --shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-      --radius: 20px;
-      --radius-sm: 12px;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Perfect na Música da Nova Zelândia — Grupo 8 · Turma 1025A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   1. RESET & TOKENS
+   ========================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+:root{
+  --bg:#0a0b0e;
+  --bg-2:#0d0e12;
+  --card:rgba(255,255,255,.03);
+  --line:rgba(255,255,255,.09);
+  --line-strong:rgba(255,255,255,.18);
 
-    body {
-      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      background-image:
-        radial-gradient(ellipse at 30% 20%, rgba(124, 92, 252, 0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 70% 70%, rgba(255, 107, 157, 0.06) 0%, transparent 60%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      color: var(--text);
-    }
+  --fg:#f4f4f5;
+  --muted:rgba(244,244,245,.55);
+  --faint:rgba(244,244,245,.3);
 
-    /* Partículas decorativas */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      animation: floatUp linear infinite;
-      opacity: 0;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.15; }
-      100% { transform: translateY(-10vh) scale(1.4); opacity: 0; }
-    }
+  --gold:#dcc98d;
+  --gold-2:#f0e3bb;
+  --purple:#a855f7;
+  --purple-2:#c084fc;
+  --red:#ff416c;
+  --red-2:#ff7096;
+  --green:#4ade80;
+  --blue:#60a5fa;
 
-    .container {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 750px;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 36px 34px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-      animation: fadeInUp 0.6s ease-out;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  --sans:'Inter',system-ui,sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
 
-    /* Cabeçalho */
-    .header {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-    .icon-wrapper {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), #9b7bff);
-      margin-bottom: 14px;
-      box-shadow: 0 0 28px rgba(124, 92, 252, 0.4);
-      animation: pulse 2.5s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 22px rgba(124, 92, 252, 0.35); }
-      50% { box-shadow: 0 0 42px rgba(124, 92, 252, 0.65); }
-    }
-    .icon-wrapper svg {
-      width: 26px;
-      height: 26px;
-      fill: none;
-      stroke: #fff;
-      stroke-width: 2;
-    }
-    .header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .header p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
+html,body{height:100%;}
 
-    /* Área de texto */
-    .textarea-wrapper {
-      position: relative;
-      margin-bottom: 20px;
-    }
-    textarea {
-      width: 100%;
-      height: 150px;
-      background: var(--textarea-bg);
-      border: 2px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 18px 20px;
-      font-size: 1rem;
-      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      color: #e0e0f0;
-      resize: vertical;
-      transition: var(--transition);
-      line-height: 1.6;
-      min-height: 110px;
-      max-height: 350px;
-    }
-    textarea::placeholder {
-      color: #4b4b66;
-      font-style: italic;
-    }
-    textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(124, 92, 252, 0.08), 0 0 30px rgba(124, 92, 252, 0.3);
-    }
-    .char-count {
-      position: absolute;
-      bottom: 10px;
-      right: 14px;
-      font-size: 0.75rem;
-      color: #5a5a78;
-      background: rgba(18, 18, 31, 0.9);
-      padding: 4px 12px;
-      border-radius: 20px;
-      pointer-events: none;
-      font-weight: 500;
-    }
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--fg);
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+  font-size:16px;
+}
 
-    /* Botões principais (primeira fileira) */
-    .main-buttons {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      flex: 1;
-      min-width: 120px;
-      padding: 14px 18px;
-      border: none;
-      border-radius: var(--radius-sm);
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      letter-spacing: 0.02em;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      font-family: inherit;
-    }
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0);
-      transition: var(--transition);
-      border-radius: inherit;
-    }
-    .btn-primary:hover::after {
-      background: rgba(255,255,255,0.08);
-    }
-    .btn-primary:active {
-      transform: scale(0.95);
-    }
-    .btn-upper {
-      background: linear-gradient(135deg, #7c5cfc, #6a4ff0);
-      box-shadow: 0 8px 22px rgba(124,92,252,0.35);
-    }
-    .btn-lower {
-      background: linear-gradient(135deg, #ff6b9d, #f05278);
-      box-shadow: 0 8px 22px rgba(255,107,157,0.35);
-    }
+::selection{background:var(--gold);color:#0a0a0a;}
+button{font-family:inherit;}
+img{max-width:100%;display:block;}
 
-    /* Segunda fileira: mais transformações */
-    .transform-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-    .btn-transform {
-      flex: 1;
-      min-width: 100px;
-      padding: 11px 12px;
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      background: rgba(255,255,255,0.03);
-      color: #cacaf0;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      letter-spacing: 0.02em;
-      font-family: inherit;
-      backdrop-filter: blur(4px);
-    }
-    .btn-transform:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: #5a5a85;
-      color: #fff;
-      transform: translateY(-1px);
-    }
-    .btn-transform:active {
-      transform: scale(0.94);
-    }
-    .btn-transform svg {
-      width: 15px;
-      height: 15px;
-      flex-shrink: 0;
-    }
+/* ==========================================================
+   2. HEADER / FOOTER / PROGRESS
+   ========================================================== */
+.progress-track{
+  position:fixed;top:0;left:0;right:0;height:2px;z-index:200;
+  background:rgba(255,255,255,.05);
+}
+.progress-fill{
+  height:100%;width:10%;
+  background:linear-gradient(90deg,var(--gold),var(--purple),var(--red));
+  transition:width .65s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 0 14px rgba(220,201,141,.4);
+}
 
-    /* Terceira fileira: ações utilitárias */
-    .actions-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .btn-utility {
-      padding: 9px 16px;
-      border-radius: 50px;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: #a0a0c0;
-      font-size: 0.8rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      letter-spacing: 0.03em;
-      font-family: inherit;
-    }
-    .btn-utility:hover {
-      background: rgba(255,255,255,0.06);
-      color: #d0d0f0;
-      border-color: #555;
-    }
-    .btn-utility:active {
-      transform: scale(0.93);
-    }
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:64px;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3vw,40px);
+  background:linear-gradient(to bottom,rgba(10,11,14,.94),rgba(10,11,14,0));
+  pointer-events:none;
+}
+.topbar > *{pointer-events:auto;}
 
-    /* Seção de exemplos */
-    .examples-section {
-      background: rgba(18,18,31,0.7);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px 18px;
-      margin-top: 10px;
-    }
-    .examples-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #b8b8d0;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .example-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
-    }
-    .example-card {
-      background: #12121f;
-      border: 1px solid #2a2a40;
-      border-radius: 10px;
-      padding: 10px 12px;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 0.78rem;
-      color: #b0b0cc;
-      text-align: center;
-      word-break: break-word;
-      line-height: 1.4;
-    }
-    .example-card:hover {
-      border-color: var(--primary);
-      background: #1a1a35;
-      color: #e0e0ff;
-      transform: translateY(-2px);
-    }
-    .example-card .label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-      color: #7c8aa0;
-    }
-    .example-card .value {
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-weight: 500;
-    }
+.brand{
+  display:flex;align-items:center;gap:12px;
+  font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(244,244,245,.75);
+}
+.brand-flag{width:26px;height:13px;border-radius:2px;overflow:hidden;flex:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.18);}
+.brand-flag img{width:100%;height:100%;object-fit:cover;}
+.brand-sep{color:var(--faint);margin:0 2px;}
 
-    /* Toast */
-    .toast {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-120px);
-      background: #2a2a40;
-      color: #e0e0f0;
-      padding: 10px 24px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      z-index: 100;
-      pointer-events: none;
-      border: 1px solid var(--border);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-    .toast .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #4ade80;
-    }
+.top-right{display:flex;align-items:center;gap:14px;}
 
-    @media (max-width: 600px) {
-      .container { padding: 24px 18px; }
-      .btn-primary { font-size: 0.85rem; padding: 13px 12px; }
-      .btn-transform { font-size: 0.75rem; padding: 10px 8px; }
-    }
-  </style>
+.timer{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 12px;border-radius:100px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+  font-family:var(--mono);font-size:12px;font-weight:600;
+  color:rgba(244,244,245,.85);
+  letter-spacing:.06em;
+  transition:.3s;
+  cursor:pointer;
+}
+.timer.active{
+  border-color:rgba(220,201,141,.4);
+  background:rgba(220,201,141,.08);
+  color:var(--gold-2);
+}
+.timer svg{width:11px;height:11px;opacity:.7;}
+.timer.active svg{opacity:1;}
+
+.slide-counter{
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;
+  color:var(--faint);
+}
+.slide-counter b{color:var(--fg);font-weight:700;}
+
+.icon-btn{
+  width:38px;height:38px;border-radius:10px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+  color:rgba(244,244,245,.72);
+  display:grid;place-items:center;cursor:pointer;
+  transition:.25s;backdrop-filter:blur(12px);
+}
+.icon-btn:hover{background:rgba(255,255,255,.09);color:#fff;border-color:var(--line-strong);}
+.icon-btn svg{width:15px;height:15px;}
+
+.bottombar{
+  position:fixed;bottom:0;left:0;right:0;height:82px;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:0 clamp(20px,3vw,40px);
+  background:linear-gradient(to top,rgba(10,11,14,.94),rgba(10,11,14,0));
+  pointer-events:none;
+}
+.bottombar > *{pointer-events:auto;}
+
+.nav-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  height:44px;padding:0 22px;border-radius:30px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.045);
+  color:rgba(244,244,245,.88);
+  font-size:13.5px;font-weight:600;
+  cursor:pointer;transition:.25s;backdrop-filter:blur(12px);
+  white-space:nowrap;
+}
+.nav-btn:hover:not(:disabled){
+  background:rgba(255,255,255,.1);color:#fff;border-color:var(--line-strong);
+  transform:translateY(-1px);
+}
+.nav-btn:disabled{opacity:.22;cursor:not-allowed;}
+.nav-btn svg{width:14px;height:14px;}
+.nav-btn.primary{
+  background:#fff;color:#0a0a0a;border-color:#fff;
+}
+.nav-btn.primary:hover:not(:disabled){background:var(--gold-2);border-color:var(--gold-2);}
+
+.nav-hint{
+  font-size:12px;color:var(--faint);font-weight:500;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-hint kbd{
+  font-family:var(--mono);font-size:10.5px;font-weight:600;
+  padding:3px 7px;border-radius:5px;
+  border:1px solid var(--line);background:rgba(255,255,255,.04);
+  color:rgba(244,244,245,.6);
+}
+
+/* ==========================================================
+   3. DECK / SLIDES
+   ========================================================== */
+.deck{position:fixed;inset:0;}
+
+.slide{
+  position:absolute;inset:0;
+  padding:88px clamp(28px,5vw,88px) 104px;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;
+  transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.4,0,.2,1),
+             transform .7s cubic-bezier(.4,0,.2,1),
+             visibility 0s linear .7s;
+  overflow-y:auto;overflow-x:hidden;
+  background:var(--bg);
+}
+.slide.active{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .7s cubic-bezier(.4,0,.2,1),
+             transform .7s cubic-bezier(.4,0,.2,1),
+             visibility 0s;
+}
+.slide::-webkit-scrollbar{width:7px;}
+.slide::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:99px;}
+.slide::-webkit-scrollbar-track{background:transparent;}
+
+.slide-inner{
+  width:100%;max-width:1320px;margin:0 auto;
+  display:flex;flex-direction:column;
+  min-height:100%;flex:1;
+}
+
+.glow{
+  position:absolute;pointer-events:none;z-index:0;
+  width:900px;height:900px;border-radius:50%;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(96,165,250,.09) 0%,transparent 62%);
+  transition:background .9s ease;
+  filter:blur(20px);
+}
+.slide > *{position:relative;z-index:1;}
+
+.slide.grain::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:2;
+  opacity:.03;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================
+   4. TYPOGRAPHY
+   ========================================================== */
+.kicker{
+  font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--faint);
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:20px;
+}
+.kicker::before{content:'';width:28px;height:1px;background:currentColor;opacity:.6;}
+.kicker.gold{color:var(--gold);}
+.kicker.purple{color:var(--purple-2);}
+.kicker.red{color:var(--red-2);}
+
+.h-display{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.02em;}
+.h-display em{font-style:italic;color:var(--gold);}
+.h1{font-size:clamp(42px,7vw,104px);}
+.h2{font-size:clamp(32px,4.4vw,64px);}
+
+.lede{
+  font-size:clamp(15px,1.4vw,20px);
+  line-height:1.55;color:var(--muted);font-weight:300;
+  max-width:64ch;
+}
+
+/* ==========================================================
+   5. SLIDE 01 — CAPA
+   ========================================================== */
+#s1 .slide-inner{justify-content:center;position:relative;}
+
+.hero-stars{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.55;}
+.hero-stars svg{width:100%;height:100%;}
+
+.hero-content{position:relative;z-index:2;max-width:1080px;}
+
+.hero-group{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:8px 16px;border-radius:100px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(244,244,245,.72);
+  margin-bottom:clamp(20px,2.8vh,32px);
+}
+.hero-group .brand-flag{width:24px;height:12px;}
+
+.hero-title{margin-bottom:clamp(18px,2.6vh,28px);}
+.hero-title .l1{display:block;color:#fff;}
+.hero-title .l2{display:block;font-style:italic;color:var(--gold);}
+
+.hero-sub{
+  font-size:clamp(16px,1.5vw,22px);
+  line-height:1.6;color:var(--muted);font-weight:300;
+  max-width:48ch;margin-bottom:clamp(22px,3.2vh,34px);
+}
+.hero-sub strong{color:rgba(244,244,245,.92);font-weight:500;}
+
+.hero-artists{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-bottom:clamp(24px,3.4vh,38px);
+}
+.hero-artist-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:7px 16px 7px 8px;border-radius:100px;
+  border:1px solid var(--line);background:rgba(255,255,255,.035);
+  font-size:13px;font-weight:600;
+}
+.hero-artist-pill .dot{
+  width:26px;height:26px;border-radius:50%;flex:none;
+  display:grid;place-items:center;
+  font-family:var(--serif);font-size:14px;font-weight:600; overflow:hidden;
+}
+.hero-artist-pill .dot img{width:100%;height:100%;object-fit:cover;}
+.hero-sep{color:var(--faint);font-size:18px;}
+
+.btn-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  height:56px;padding:0 30px;border-radius:100px;
+  border:none;cursor:pointer;
+  background:linear-gradient(100deg,var(--gold-2),var(--gold));
+  color:#0a0a0a;
+  font-size:14.5px;font-weight:700;
+  box-shadow:0 14px 40px -12px rgba(220,201,141,.6);
+  transition:.3s cubic-bezier(.4,0,.2,1);
+}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 20px 50px -14px rgba(220,201,141,.75);}
+.btn-cta svg{width:16px;height:16px;transition:transform .3s;}
+.btn-cta:hover svg{transform:translateX(4px);}
+
+/* INTEGRANTES DO GRUPO COM FOTOS (1:1) */
+.group-members{
+  margin-top:clamp(26px,3.6vh,42px);
+  padding-top:clamp(20px,2.6vh,28px);
+  border-top:1px solid var(--line);
+  max-width:760px;
+}
+.gm-label{
+  font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:14px;
+}
+.gm-grid{
+  display:flex;flex-wrap:wrap;align-items:center;gap:16px;
+}
+.gm-item{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);padding:6px 14px 6px 6px;
+  border-radius:100px;
+}
+.gm-avatar{
+  width:32px;height:32px;border-radius:50%;object-fit:cover;flex:none;
+  border:1px solid rgba(255,255,255,.2);
+}
+.gm-name{
+  font-family:var(--serif);font-size:17px;font-weight:500;
+  color:rgba(244,244,245,.9);
+}
+.gm-class{
+  margin-top:12px;
+  font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.12em;
+  color:var(--gold-2);text-transform:uppercase;
+}
+
+/* ==========================================================
+   6. SLIDE 02 — NOVA ZELÂNDIA
+   ========================================================== */
+.artist-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,26px);
+  margin-top:clamp(24px,4vh,44px);flex:1;align-items:stretch;
+}
+.artist-card{
+  position:relative;overflow:hidden;
+  border:1px solid var(--line);border-radius:22px;
+  padding:clamp(26px,2.6vw,38px);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:clamp(280px,38vh,420px);
+  transition:.4s cubic-bezier(.4,0,.2,1);
+}
+.artist-card:hover{transform:translateY(-4px);border-color:var(--line-strong);}
+
+.artist-card .bg-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0;
+  filter:saturate(.88) contrast(1.05);
+  transition:transform .8s cubic-bezier(.4,0,.2,1);
+}
+.artist-card:hover .bg-img{transform:scale(1.04);}
+.artist-card.enz .bg-img{filter:saturate(.75) contrast(1.1) sepia(.05);}
+
+.artist-card::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to top,rgba(10,11,14,.96) 0%,rgba(10,11,14,.55) 45%,rgba(10,11,14,.15) 100%),
+    linear-gradient(135deg, rgba(126,34,206,.25), transparent 55%);
+}
+.artist-card.enz::before{
+  background:
+    linear-gradient(to top,rgba(10,11,14,.96) 0%,rgba(10,11,14,.55) 45%,rgba(10,11,14,.15) 100%),
+    linear-gradient(135deg, rgba(220,38,38,.28), transparent 55%);
+}
+
+.artist-card > *{position:relative;z-index:2;}
+
+.artist-card .card-badge{
+  position:absolute;top:clamp(20px,2vw,28px);right:clamp(20px,2vw,28px);
+  z-index:3;
+  font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  padding:6px 12px;border-radius:100px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(8px);
+  color:rgba(255,255,255,.8);
+}
+.artist-card.royals .card-badge{color:var(--purple-2);border-color:rgba(192,132,252,.35);}
+.artist-card.enz .card-badge{color:var(--red-2);border-color:rgba(255,112,150,.35);}
+
+.artist-card .name{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(32px,3.6vw,52px);line-height:1.05;
+}
+.artist-card .role{
+  margin-top:8px;font-size:clamp(13px,1.15vw,15px);
+  color:rgba(244,244,245,.72);font-weight:400;
+}
+.artist-card .tag{
+  margin-top:16px;display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+}
+.artist-card.royals .tag{color:var(--purple-2);}
+.artist-card.enz .tag{color:var(--red-2);}
+.artist-card .tag .brand-flag{width:20px;height:10px;}
+
+/* ==========================================================
+   7. SLIDE 03/04 — GRAMÁTICA
+   ========================================================== */
+.formula-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;margin-top:clamp(20px,3vh,36px);}
+
+.formula{
+  display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);flex-wrap:wrap;
+  margin-bottom:clamp(24px,3.6vh,38px);
+}
+.formula-part{
+  font-family:var(--serif);
+  font-size:clamp(38px,6.4vw,92px);
+  line-height:1;letter-spacing:-.02em;
+}
+.formula-part.aux{color:var(--gold-2);font-style:italic;}
+.formula-part.plus{color:var(--faint);font-size:clamp(22px,3vw,44px);}
+.formula-part.pp{color:#fff;}
+.formula-part.participle{color:var(--purple-2);font-style:italic;}
+
+.formula-underline{
+  height:2px;max-width:920px;margin-bottom:clamp(26px,3.6vh,40px);
+  background:linear-gradient(90deg,var(--gold),var(--purple),var(--red),transparent);
+  opacity:.55;
+}
+
+.examples-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,20px);
+  max-width:920px;margin-bottom:clamp(26px,3.6vh,42px);
+}
+.example-box{
+  padding:clamp(18px,1.9vw,26px) clamp(20px,2.2vw,30px);
+  border-radius:16px;border:1px solid var(--line);
+  background:rgba(255,255,255,.028);
+}
+.example-box .ex{
+  font-family:var(--mono);font-weight:600;
+  font-size:clamp(18px,1.9vw,26px);line-height:1.2;
+}
+.example-box .ex span{color:var(--gold);}
+.example-box .lbl{
+  margin-top:12px;font-size:10.5px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);
+}
+
+.timeline-h{max-width:920px;margin-bottom:clamp(22px,3vh,34px);}
+.timeline-h-track{
+  position:relative;height:3px;border-radius:99px;
+  background:linear-gradient(90deg,rgba(220,201,141,.25),rgba(168,85,247,.55),rgba(255,65,108,.8),rgba(244,244,245,.9));
+}
+.timeline-h-track::before,.timeline-h-track::after{
+  content:'';position:absolute;top:50%;width:11px;height:11px;border-radius:50%;
+  transform:translateY(-50%);
+}
+.timeline-h-track::before{left:0;background:var(--gold);box-shadow:0 0 14px rgba(220,201,141,.7);}
+.timeline-h-track::after{right:0;background:#fff;box-shadow:0 0 18px rgba(255,255,255,.8);}
+.timeline-h-labels{
+  display:flex;justify-content:space-between;margin-top:14px;
+  font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--faint);
+}
+.timeline-h-labels span:last-child{color:rgba(244,244,245,.9);}
+
+.formula-note{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(18px,2vw,28px);line-height:1.4;
+  color:rgba(244,244,245,.9);max-width:44ch;
+}
+.formula-note em{color:var(--gold);font-style:italic;}
+
+/* 3 CASOS DE USO */
+.uses-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px);
+  margin-top:clamp(24px,3.4vh,38px);flex:1;align-items:stretch;
+}
+.use-card{
+  padding:clamp(22px,2.4vw,32px);
+  border:1px solid var(--line);border-radius:18px;
+  background:rgba(255,255,255,.025);
+  display:flex;flex-direction:column;
+  transition:.3s;
+}
+.use-card:hover{border-color:var(--line-strong);transform:translateY(-3px);}
+.use-card .num{
+  font-family:var(--serif);font-size:clamp(38px,4vw,56px);
+  line-height:1;font-style:italic;
+  margin-bottom:14px;
+}
+.use-card:nth-child(1) .num{color:var(--purple-2);}
+.use-card:nth-child(2) .num{color:var(--gold-2);}
+.use-card:nth-child(3) .num{color:var(--red-2);}
+.use-card .title{
+  font-family:var(--serif);font-size:clamp(20px,2.1vw,28px);font-weight:500;
+  line-height:1.15;margin-bottom:12px;
+}
+.use-card .desc{
+  font-size:clamp(13px,1.15vw,15px);color:var(--muted);line-height:1.55;
+  margin-bottom:auto;padding-bottom:18px;
+}
+.use-card .example{
+  font-family:var(--mono);font-size:clamp(12.5px,1.1vw,14px);
+  padding:10px 14px;border-radius:10px;
+  background:rgba(255,255,255,.04);
+  border-left:2px solid currentColor;
+  color:rgba(244,244,245,.85);
+}
+.use-card:nth-child(1) .example{color:var(--purple-2);}
+.use-card:nth-child(2) .example{color:var(--gold-2);}
+.use-card:nth-child(3) .example{color:var(--red-2);}
+
+/* ==========================================================
+   8. SONG SLIDES (Royals & I Got You)
+   ========================================================== */
+.slide.song{background:var(--bg-2);}
+#s6{--song-accent:var(--purple);--song-accent-2:var(--purple-2);--song-soft:rgba(168,85,247,.14);}
+#s8{--song-accent:var(--red);--song-accent-2:var(--red-2);--song-soft:rgba(255,65,108,.14);}
+
+.song-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;
+  margin-bottom:clamp(24px,3.6vh,40px);
+}
+.song-head-left{display:flex;align-items:center;gap:20px;}
+.artist-avatar{
+  width:clamp(60px,5.5vw,80px);height:clamp(60px,5.5vw,80px);
+  border-radius:50%;object-fit:cover;flex:none;
+  border:2px solid rgba(255,255,255,.15);
+  box-shadow:0 8px 24px -6px rgba(0,0,0,.7);
+  background:linear-gradient(135deg,#333,#111);
+}
+.song-tag{
+  font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--song-accent-2);margin-bottom:10px;
+}
+.song-title{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(38px,5.2vw,78px);line-height:.98;letter-spacing:-.02em;
+}
+.song-title em{font-style:italic;color:var(--song-accent-2);}
+.song-num{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(60px,8vw,130px);
+  line-height:.8;color:rgba(255,255,255,.05);user-select:none;
+}
+
+.song-body{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(28px,3.4vw,54px);flex:1;align-items:center;
+}
+
+/* PLAYER */
+.player-card{
+  width:100%;max-width:420px;margin:0 auto;
+  border-radius:20px;overflow:hidden;
+  border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.7);
+  position:relative;
+}
+.player-cover{
+  position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;
+  display:grid;place-items:center;
+}
+.player-cover.royals{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(192,132,252,.55), transparent 60%),
+    radial-gradient(circle at 75% 80%, rgba(126,34,206,.5), transparent 55%),
+    linear-gradient(160deg,#1e0b2e,#0a0414);
+}
+.player-cover.enz{
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255,112,150,.55), transparent 60%),
+    radial-gradient(circle at 80% 75%, rgba(220,38,38,.45), transparent 55%),
+    linear-gradient(160deg,#2a0a12,#0f0407);
+}
+.player-cover .cover-art{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.4;mix-blend-mode:overlay;filter:contrast(1.1) saturate(1.1);
+  transition:.6s;
+}
+.player-cover::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.55));
+  z-index:1;
+}
+.player-cover .cover-mark{
+  position:absolute;top:20px;left:24px;
+  font-family:var(--serif);font-style:italic;font-size:clamp(50px,5.5vw,80px);
+  color:rgba(255,255,255,.09);line-height:1;pointer-events:none;user-select:none;
+  z-index:2;
+}
+.player-cover .cover-genre{
+  position:absolute;top:24px;right:24px;
+  font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);z-index:2;
+}
+
+.player-btn{
+  position:relative;z-index:3;
+  width:84px;height:84px;border-radius:50%;
+  border:none;cursor:pointer;
+  background:rgba(255,255,255,.95);
+  color:#0a0a0a;
+  display:grid;place-items:center;
+  transition:.3s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 16px 40px -8px rgba(0,0,0,.6);
+}
+.player-btn:hover{transform:scale(1.08);background:#fff;}
+.player-btn svg{width:26px;height:26px;grid-area:1/1;}
+.player-btn .icon-pause{display:none;}
+.player-btn.playing{background:var(--song-accent);color:#fff;}
+.player-btn.playing .icon-play{display:none;}
+.player-btn.playing .icon-pause{display:block;}
+
+.player-btn.playing::after{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:2px solid var(--song-accent);opacity:.6;
+  animation:ring 2s ease-out infinite;
+}
+@keyframes ring{
+  0%{transform:scale(1);opacity:.6;}
+  100%{transform:scale(1.35);opacity:0;}
+}
+
+.player-meta{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  padding:22px 22px 20px;
+  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:16px;
+}
+.player-meta .info .t{
+  font-family:var(--serif);font-size:22px;font-weight:500;line-height:1.1;
+}
+.player-meta .info .a{
+  font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);margin-top:5px;
+}
+.player-meta .badge{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:5px 11px;border-radius:100px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.85);
+  white-space:nowrap;
+}
+
+.player-error{
+  display:none;
+  margin-top:14px;padding:12px 16px;
+  border-radius:12px;
+  border:1px solid rgba(255,65,108,.3);
+  background:rgba(255,65,108,.08);
+  font-size:12.5px;line-height:1.5;color:#ffcbbd;
+}
+.player-error.show{display:block;}
+
+/* LYRIC PANEL */
+.lyric-panel{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:rgba(255,255,255,.025);
+  padding:clamp(24px,2.4vw,36px);
+  position:relative;
+}
+.lyric-bar{
+  display:flex;align-items:center;gap:14px;
+  padding-bottom:clamp(18px,2.2vh,24px);
+  border-bottom:1px solid var(--line);
+  margin-bottom:clamp(22px,3vh,32px);
+}
+.lyric-bar .eq{
+  display:flex;align-items:flex-end;gap:3px;height:16px;flex:none;
+}
+.lyric-bar .eq span{
+  width:3px;border-radius:2px;background:var(--song-accent-2);
+  animation:eq 1.1s ease-in-out infinite;
+}
+.lyric-bar .eq span:nth-child(1){height:6px;animation-delay:0s;}
+.lyric-bar .eq span:nth-child(2){height:14px;animation-delay:.18s;}
+.lyric-bar .eq span:nth-child(3){height:9px;animation-delay:.36s;}
+.lyric-bar .eq span:nth-child(4){height:15px;animation-delay:.54s;}
+@keyframes eq{0%,100%{transform:scaleY(.45);}50%{transform:scaleY(1);}}
+.lyric-bar .lbl{
+  font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--faint);
+}
+.lyric-bar .verb-chain-inline{
+  margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:600;
+  color:var(--song-accent-2);letter-spacing:.06em;
+  display:flex;align-items:center;gap:8px;
+}
+.lyric-bar .verb-chain-inline .arr{color:var(--faint);}
+
+.lyric-line{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(28px,3.4vw,50px);
+  line-height:1.32;letter-spacing:-.01em;
+  color:rgba(244,244,245,.95);
+  margin-bottom:clamp(20px,2.6vh,30px);
+}
+.lyric-line .plain{color:rgba(244,244,245,.42);}
+
+.hot{
+  position:relative;display:inline-block;
+  color:var(--song-accent-2);
+  cursor:pointer;
+  border-bottom:2px dashed rgba(255,255,255,.28);
+  padding-bottom:1px;
+  transition:color .25s,border-color .25s,background .25s;
+  outline:none;border-radius:4px;
+  padding-left:3px;padding-right:3px;margin:0 -3px;
+}
+.hot:hover,.hot.open{color:#fff;background:var(--song-soft);border-color:var(--song-accent-2);}
+.hot .pop{
+  position:absolute;left:50%;top:100%;
+  transform:translateX(-50%) translateY(6px);
+  background:#f4f4f5;color:#0a0a0a;
+  padding:9px 15px;border-radius:10px;
+  font-family:var(--sans);
+  font-size:clamp(12px,1.05vw,14px);font-weight:700;
+  white-space:nowrap;line-height:1.3;
+  opacity:0;pointer-events:none;
+  transition:opacity .22s,transform .22s;
+  box-shadow:0 16px 40px -10px rgba(0,0,0,.7);
+  z-index:40;
+}
+.hot .pop::before{
+  content:'';position:absolute;left:50%;top:-5px;
+  width:10px;height:10px;background:#f4f4f5;
+  transform:translateX(-50%) rotate(45deg);border-radius:2px;
+}
+.hot:hover .pop,.hot.open .pop{
+  opacity:1;transform:translateX(-50%) translateY(14px);
+}
+
+.hint-row{
+  display:flex;align-items:center;gap:9px;
+  font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);
+}
+.hint-row .dotpulse{
+  width:6px;height:6px;border-radius:50%;background:var(--song-accent-2);
+  animation:pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.35;transform:scale(.85);}50%{opacity:1;transform:scale(1.15);}}
+
+.verb-chain{
+  margin-top:clamp(20px,2.6vh,28px);
+  padding:clamp(16px,1.8vw,22px) clamp(18px,2vw,26px);
+  border:1px solid var(--line);border-radius:16px;
+  background:rgba(255,255,255,.02);
+  display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);flex-wrap:wrap;
+}
+.verb-chain .lbl{
+  font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);margin-right:8px;
+}
+.verb{
+  font-family:var(--mono);font-weight:600;
+  font-size:clamp(17px,1.9vw,24px);line-height:1;
+}
+.verb.base{color:rgba(244,244,245,.7);}
+.verb.past{color:rgba(244,244,245,.42);}
+.verb.pp{color:var(--song-accent-2);}
+.verb-arrow{color:var(--faint);font-size:clamp(14px,1.5vw,18px);}
+
+/* ==========================================================
+   9. ANALYSIS SLIDES
+   ========================================================== */
+#s7{--song-accent:var(--purple);--song-accent-2:var(--purple-2);--song-soft:rgba(168,85,247,.14);}
+#s9{--song-accent:var(--red);--song-accent-2:var(--red-2);--song-soft:rgba(255,65,108,.14);}
+
+.blocks-row{
+  display:flex;align-items:center;gap:clamp(8px,1.2vw,16px);
+  flex-wrap:wrap;margin-bottom:clamp(22px,3.2vh,34px);
+}
+.blk{
+  padding:clamp(12px,1.3vw,18px) clamp(16px,1.8vw,26px);
+  border-radius:12px;
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(22px,3vw,44px);line-height:1;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+  white-space:nowrap;
+}
+.blk.pron{color:#fff;border-color:rgba(255,255,255,.2);}
+.blk.aux{
+  color:#0a0a0a;background:linear-gradient(120deg,var(--gold-2),var(--gold));
+  border-color:transparent;font-style:italic;
+}
+.blk.neg{
+  color:var(--purple-2);background:rgba(168,85,247,.14);
+  border-color:rgba(168,85,247,.28);font-style:italic;
+}
+.blk.verb{
+  color:var(--song-accent-2);background:var(--song-soft);
+  border-color:rgba(255,255,255,.14);font-style:italic;
+}
+.blk-op{color:var(--faint);font-size:clamp(16px,1.8vw,26px);font-weight:300;}
+
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 16px;border-radius:100px;
+  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid rgba(74,222,128,.4);
+  background:rgba(74,222,128,.1);
+  color:#a8ecbe;
+}
+
+.analysis-grid{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(20px,2.6vw,40px);flex:1;align-items:start;
+  margin-top:clamp(18px,2.6vh,28px);
+}
+.note-card{
+  padding:clamp(22px,2.4vw,32px);
+  border:1px solid var(--line);border-radius:18px;
+  background:rgba(255,255,255,.025);
+}
+.note-card p{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(19px,2.1vw,28px);line-height:1.4;
+  color:rgba(244,244,245,.92);
+}
+.note-card p em{color:var(--song-accent-2);font-style:italic;}
+
+.vs-card{
+  margin-top:clamp(14px,1.8vh,20px);
+  padding:clamp(18px,2vw,26px);
+  border:1px solid var(--line);border-radius:18px;
+  background:rgba(255,255,255,.02);
+}
+.vs-row{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 0;
+}
+.vs-row + .vs-row{border-top:1px solid var(--line);}
+.vs-row .vs-ex{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(17px,1.8vw,24px);line-height:1.2;
+}
+.vs-row.pp .vs-ex{color:var(--song-accent-2);}
+.vs-row.sp .vs-ex{color:rgba(244,244,245,.4);}
+.vs-row .vs-tag{
+  margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint);white-space:nowrap;
+}
+.vs-row.pp .vs-tag{color:var(--song-accent-2);}
+
+.v-timeline{
+  padding:clamp(22px,2.4vw,30px);
+  border:1px solid var(--line);border-radius:18px;
+  background:rgba(255,255,255,.025);
+}
+.vt-node{display:flex;gap:16px;align-items:flex-start;}
+.vt-node .bullet{
+  width:11px;height:11px;border-radius:50%;flex:none;margin-top:8px;
+}
+.vt-node.past .bullet{background:rgba(244,244,245,.3);}
+.vt-node.pres .bullet{background:var(--song-accent-2);box-shadow:0 0 16px var(--song-accent-2);}
+.vt-node .vt-label{
+  font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:6px;
+}
+.vt-node.pres .vt-label{color:var(--song-accent-2);}
+.vt-node .vt-text{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(17px,1.85vw,24px);line-height:1.3;
+}
+.vt-node.past .vt-text{color:rgba(244,244,245,.5);}
+.vt-node.pres .vt-text{color:#fff;}
+.vt-line{
+  width:2px;height:clamp(26px,3.4vh,42px);
+  margin-left:5px;
+  background:linear-gradient(to bottom,rgba(244,244,245,.15),var(--song-accent-2));
+  border-radius:2px;
+}
+
+/* ==========================================================
+   10. SLIDE 10 — COMPARAÇÃO
+   ========================================================== */
+.compare-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.2vw,28px);
+  margin-top:clamp(20px,3vh,32px);
+  margin-bottom:clamp(20px,3vh,32px);
+}
+.cmp-card{
+  position:relative;overflow:hidden;
+  padding:clamp(24px,2.6vw,36px);
+  border:1px solid var(--line);border-radius:20px;
+  background:rgba(255,255,255,.028);
+  display:flex;flex-direction:column;
+  transition:.35s cubic-bezier(.4,0,.2,1);
+}
+.cmp-card:hover{transform:translateY(-4px);border-color:var(--line-strong);}
+.cmp-card.royals{--accent:var(--purple-2);--accent-soft:rgba(168,85,247,.14);}
+.cmp-card.enz{--accent:var(--red-2);--accent-soft:rgba(255,65,108,.14);}
+.cmp-card .glow-card{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(420px 280px at 85% 0%,var(--accent-soft),transparent 66%);
+}
+.cmp-card .cm-song{
+  font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--accent);position:relative;margin-bottom:6px;
+}
+.cmp-card .cm-artist{
+  font-size:11.5px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;position:relative;margin-bottom:clamp(18px,2.2vh,24px);
+}
+.cmp-card .cm-quote{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(24px,2.7vw,40px);line-height:1.2;
+  color:#fff;position:relative;margin-bottom:clamp(16px,2.2vh,22px);
+}
+.cmp-card .cm-quote em{color:var(--accent);font-style:italic;}
+.cmp-card .cm-desc{
+  font-size:clamp(12.5px,1.1vw,14.5px);color:var(--muted);line-height:1.5;
+  position:relative;margin-bottom:auto;padding-bottom:clamp(16px,2.2vh,24px);
+}
+.cmp-card .cm-struct{
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  padding:10px 16px;border-radius:100px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);
+  font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:600;
+  letter-spacing:.1em;color:rgba(244,244,245,.88);
+  align-self:flex-start;
+}
+.cmp-card .cm-struct b{color:var(--accent);font-weight:700;}
+
+.center-formula{
+  display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.6vw,22px);
+  padding:clamp(18px,2.2vh,26px);
+  border:1px solid var(--line);border-radius:18px;
+  background:rgba(255,255,255,.028);
+  margin-bottom:clamp(16px,2.2vh,22px);
+  flex-wrap:wrap;
+}
+.center-formula .cf{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(20px,2.3vw,34px);line-height:1;
+}
+.center-formula .cf.aux{color:var(--gold-2);font-style:italic;}
+.center-formula .cf.plus{color:var(--faint);font-family:var(--sans);font-size:clamp(15px,1.6vw,22px);}
+.center-formula .cf.pp{color:var(--purple-2);font-style:italic;}
+
+.conclusion-line{
+  text-align:center;
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(18px,2vw,28px);line-height:1.35;
+  color:rgba(244,244,245,.85);
+}
+.conclusion-line em{color:var(--gold);font-style:italic;}
+
+/* ==========================================================
+   11. SLIDE 11 — ERROS COMUNS
+   ========================================================== */
+.mistakes-grid{
+  display:flex;flex-direction:column;gap:clamp(12px,1.6vh,18px);
+  margin-top:clamp(22px,3.2vh,36px);flex:1;
+}
+.mistake-card{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;gap:clamp(16px,2vw,28px);
+  padding:clamp(18px,2vw,26px) clamp(20px,2.4vw,32px);
+  border:1px solid var(--line);border-radius:16px;
+  background:rgba(255,255,255,.022);
+  transition:.3s;
+}
+.mistake-card:hover{border-color:var(--line-strong);}
+.mistake-side{
+  display:flex;flex-direction:column;gap:6px;
+}
+.mistake-side .who{
+  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+}
+.mistake-side.wrong .who{color:#ff8f8f;}
+.mistake-side.right .who{color:#a8ecbe;}
+.mistake-side .sentence{
+  font-family:var(--mono);font-size:clamp(14px,1.5vw,19px);
+  font-weight:600;line-height:1.35;
+}
+.mistake-side.wrong .sentence{color:rgba(244,244,245,.55);}
+.mistake-side.right .sentence{color:#fff;}
+.mistake-mid{
+  font-size:clamp(18px,2vw,26px);color:var(--faint);
+}
+.mistake-note{
+  margin-top:8px;
+  font-size:clamp(11.5px,1vw,13px);color:var(--faint);line-height:1.4;
+  font-style:italic;
+}
+
+/* ==========================================================
+   12. SLIDE 12 — QUIZ
+   ========================================================== */
+.quiz-wrap{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  max-width:960px;width:100%;margin:0 auto;
+}
+.quiz-question{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(20px,2.4vw,34px);line-height:1.3;
+  margin-bottom:clamp(24px,3.4vh,38px);
+  color:rgba(244,244,245,.88);
+}
+.quiz-question em{color:var(--gold);font-style:italic;}
+
+.quiz-options{display:grid;gap:clamp(12px,1.6vh,18px);margin-bottom:clamp(20px,3vh,28px);}
+.quiz-option{
+  display:flex;align-items:center;gap:clamp(14px,1.8vw,22px);
+  padding:clamp(18px,2.2vw,26px) clamp(20px,2.4vw,30px);
+  border:1px solid var(--line);border-radius:16px;
+  background:rgba(255,255,255,.028);
+  color:var(--fg);text-align:left;cursor:pointer;
+  transition:.28s cubic-bezier(.4,0,.2,1);
+  font-family:inherit;
+}
+.quiz-option:hover{
+  background:rgba(255,255,255,.06);border-color:var(--line-strong);
+  transform:translateX(4px);
+}
+.quiz-option .letter{
+  width:44px;height:44px;border-radius:12px;flex:none;
+  display:grid;place-items:center;
+  font-family:var(--serif);font-size:22px;font-weight:600;
+  border:1px solid var(--line);background:rgba(255,255,255,.04);
+  transition:.28s;
+}
+.quiz-option .q-text{
+  font-family:var(--mono);font-weight:600;
+  font-size:clamp(17px,1.9vw,26px);line-height:1.2;
+}
+.quiz-option.correct{
+  border-color:rgba(74,222,128,.5);
+  background:rgba(74,222,128,.1);
+}
+.quiz-option.correct .letter{
+  background:rgba(74,222,128,.22);border-color:rgba(74,222,128,.5);color:#a8ecbe;
+}
+.quiz-option.wrong{
+  border-color:rgba(255,65,108,.5);
+  background:rgba(255,65,108,.08);
+}
+.quiz-option.wrong .letter{
+  background:rgba(255,65,108,.2);border-color:rgba(255,65,108,.5);color:#ffcbbd;
+}
+.quiz-feedback{
+  padding:clamp(18px,2.2vw,24px) clamp(20px,2.4vw,30px);
+  border-radius:16px;border:1px solid transparent;
+  font-size:clamp(14px,1.4vw,18px);line-height:1.55;
+  opacity:0;transform:translateY(8px);
+  transition:.35s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.quiz-feedback.show{opacity:1;transform:none;}
+.quiz-feedback strong{font-weight:700;}
+.quiz-feedback.good{
+  border-color:rgba(74,222,128,.35);
+  background:rgba(74,222,128,.08);color:#c6f2d4;
+}
+.quiz-feedback.bad{
+  border-color:rgba(255,65,108,.32);
+  background:rgba(255,65,108,.07);color:#ffcbbd;
+}
+
+/* ==========================================================
+   13. SLIDE 13 — CONCLUSÃO
+   ========================================================== */
+.conc-wrap{
+  flex:1;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+}
+.conc-kicker{
+  font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:clamp(20px,2.8vh,30px);
+}
+.conc-songs{
+  display:flex;align-items:center;justify-content:center;gap:clamp(14px,2.2vw,32px);
+  flex-wrap:wrap;margin-bottom:clamp(24px,3.6vh,40px);
+}
+.conc-song{
+  padding:clamp(16px,1.9vw,24px) clamp(22px,2.4vw,34px);
+  border:1px solid var(--line);border-radius:16px;
+  background:rgba(255,255,255,.028);
+  text-align:center;
+}
+.conc-song .cs-name{
+  font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:10px;
+}
+.conc-song .cs-quote{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(19px,2.1vw,30px);line-height:1.15;
+}
+.conc-song.royals .cs-quote em{color:var(--purple-2);font-style:italic;}
+.conc-song.enz .cs-quote em{color:var(--red-2);font-style:italic;}
+.conc-amp{
+  font-family:var(--serif);font-size:clamp(22px,2.6vw,36px);
+  color:var(--faint);user-select:none;
+}
+.conc-flow{
+  display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.2vh,14px);
+  margin-bottom:clamp(24px,3.6vh,40px);
+}
+.conc-arrow{color:var(--faint);font-size:clamp(18px,2vw,26px);line-height:1;}
+.conc-pill{
+  padding:clamp(13px,1.7vw,20px) clamp(26px,2.8vw,42px);
+  border-radius:100px;
+  background:linear-gradient(100deg,var(--gold-2),var(--gold));
+  color:#0a0a0a;
+  font-size:clamp(14px,1.7vw,24px);font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;
+  box-shadow:0 16px 50px -14px rgba(220,201,141,.6);
+}
+.conc-statement{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(20px,2.3vw,36px);line-height:1.3;
+  color:rgba(244,244,245,.92);max-width:24ch;
+  margin-bottom:clamp(28px,4.4vh,52px);
+}
+.conc-statement em{color:var(--gold);font-style:italic;}
+.conc-final{
+  display:flex;align-items:center;gap:clamp(14px,1.8vw,22px);
+  flex-wrap:wrap;justify-content:center;
+}
+.conc-thanks{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(26px,3.4vw,52px);line-height:1;
+}
+.conc-flag{
+  width:clamp(46px,4.6vw,66px);height:auto;border-radius:5px;
+  box-shadow:0 8px 26px -8px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.14);
+  display:block; overflow:hidden;
+}
+.conc-flag img{width:100%;height:100%;object-fit:cover;}
+
+.conc-group{
+  margin-top:clamp(22px,3.2vh,36px);
+  padding-top:clamp(20px,2.8vh,30px);
+  border-top:1px solid var(--line);
+  width:100%;max-width:600px;
+}
+.conc-group .names{
+  font-family:var(--serif);font-size:clamp(16px,1.7vw,22px);
+  color:rgba(244,244,245,.9);line-height:1.5;
+}
+.conc-group .class{
+  margin-top:8px;
+  font-family:var(--mono);font-size:11.5px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-2);
+}
+
+/* ==========================================================
+   14. REVEAL EXTRA (botão "ver mais")
+   ========================================================== */
+.reveal-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:10px 18px;border-radius:100px;
+  border:1px dashed rgba(255,255,255,.25);
+  background:rgba(255,255,255,.02);
+  color:rgba(244,244,245,.75);
+  font-size:12px;font-weight:600;letter-spacing:.06em;
+  cursor:pointer;transition:.25s;
+  margin-top:clamp(14px,2vh,20px);
+}
+.reveal-btn:hover{
+  border-color:var(--gold);
+  background:rgba(220,201,141,.08);
+  color:var(--gold-2);
+}
+.reveal-btn svg{width:13px;height:13px;transition:transform .3s;}
+.reveal-btn.open svg{transform:rotate(180deg);}
+
+.reveal-content{
+  max-height:0;overflow:hidden;
+  transition:max-height .55s cubic-bezier(.4,0,.2,1),opacity .35s,margin .35s;
+  opacity:0;margin-top:0;
+}
+.reveal-content.open{
+  max-height:600px;opacity:1;margin-top:clamp(16px,2.2vh,24px);
+}
+
+.irregular-table{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:2px;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--line);
+  max-width:640px;
+}
+.irregular-table > div{
+  padding:12px 18px;background:rgba(13,14,18,.9);
+  font-family:var(--mono);font-size:14px;font-weight:600;
+}
+.irregular-table .head{
+  background:rgba(255,255,255,.04);
+  font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);font-family:var(--sans);
+}
+.irregular-table .col-pp{color:var(--purple-2);}
+
+/* ==========================================================
+   15. RESPONSIVE
+   ========================================================== */
+@media (max-width:1080px){
+  .song-body{grid-template-columns:1fr;gap:32px;}
+  .player-card{max-width:340px;}
+  .analysis-grid{grid-template-columns:1fr;}
+  .compare-grid{grid-template-columns:1fr;}
+  .uses-grid{grid-template-columns:1fr;}
+  .mistake-card{grid-template-columns:1fr;text-align:left;}
+  .mistake-mid{display:none;}
+}
+@media (max-width:760px){
+  .slide{padding:80px 22px 100px;}
+  .artist-grid{grid-template-columns:1fr;}
+  .examples-row{grid-template-columns:1fr;}
+  .brand span.brand-text{display:none;}
+  .nav-btn span{display:none;}
+  .nav-btn{padding:0 14px;}
+  .nav-hint{display:none;}
+  .slide-counter{display:none;}
+  .conc-songs{gap:10px;}
+  .irregular-table > div{padding:9px 12px;font-size:12px;}
+}
+</style>
 </head>
 <body>
-  <div class="particles" id="particles"></div>
 
-  <div class="toast" id="toast">
-    <span class="dot"></span>
-    <span id="toastMsg"></span>
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-flag" id="brandFlag"><img src="bandeira.jpg" alt="Bandeira NZ"></span>
+    <span class="brand-text">Present Perfect · Música NZ</span>
+    <span class="brand-sep">·</span>
+    <span class="brand-text">Turma 1025A</span>
+  </div>
+  <div class="top-right">
+    <div class="timer" id="timer" title="Tempo da apresentação (clique para zerar)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="13" r="8"/>
+        <path d="M12 9v4l2.5 2.5M9 3h6"/>
+      </svg>
+      <span id="timerDisplay">00:00</span>
+    </div>
+    <span class="slide-counter"><b id="curNum">01</b> / <span id="totNum">13</span></span>
+    <button class="icon-btn" id="fsBtn" title="Tela Cheia (F)" aria-label="Alternar tela cheia">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main class="deck" id="deck">
+
+<!-- ================= 01 · CAPA ================= -->
+<section class="slide active grain" id="s1" data-title="Capa">
+  <div class="glow"></div>
+  <div class="hero-stars" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="starg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g fill="#fff">
+        <circle cx="1180" cy="180" r="34" fill="url(#starg)" opacity=".5"/>
+        <circle cx="1320" cy="330" r="26" fill="url(#starg)" opacity=".4"/>
+        <circle cx="1050" cy="400" r="22" fill="url(#starg)" opacity=".3"/>
+        <circle cx="1270" cy="560" r="30" fill="url(#starg)" opacity=".35"/>
+        <circle cx="1130" cy="130" r="4" opacity=".85"/>
+        <circle cx="1268" cy="298" r="3" opacity=".65"/>
+        <circle cx="1024" cy="376" r="3" opacity=".55"/>
+        <circle cx="1236" cy="522" r="3.5" opacity=".7"/>
+      </g>
+    </svg>
   </div>
 
-  <div class="container">
-    <div class="header">
-      <div class="icon-wrapper">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <text x="4" y="17" font-size="14" fill="white" stroke="none" font-weight="700" font-family="serif">A</text>
-          <text x="13" y="12" font-size="10" fill="white" stroke="none" font-weight="600" font-family="serif">a</text>
+  <div class="slide-inner">
+    <div class="hero-content">
+      <div class="hero-group">
+        <span class="brand-flag"><img src="bandeira.jpg" alt="Bandeira NZ"></span>
+        Turma 1025A · Grupo 8
+      </div>
+
+      <h1 class="hero-title h-display h1">
+        <span class="l1">Present Perfect</span>
+        <span class="l2">na Música da Nova Zelândia</span>
+      </h1>
+
+      <p class="hero-sub">
+        Duas músicas. Uma estrutura gramatical.<br>
+        <strong>Uma conexão entre passado e presente.</strong>
+      </p>
+
+      <div class="hero-artists">
+        <span class="hero-artist-pill royals">
+          <span class="dot"><img src="lorde.jpg" alt="Lorde"></span> Lorde — Royals
+        </span>
+        <span class="hero-sep">+</span>
+        <span class="hero-artist-pill enz">
+          <span class="dot"><img src="splitenz.jpg" alt="Split Enz"></span> Split Enz — I Got You
+        </span>
+      </div>
+
+      <button class="btn-cta" onclick="go(1); startTimer();">
+        Iniciar Apresentação
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
         </svg>
-      </div>
-      <h1>Conversor de Maiúsculas e Minúsculas</h1>
-      <p>Transforme seu texto com um clique. Escolha entre várias opções de capitalização.</p>
-    </div>
+      </button>
 
-    <div class="textarea-wrapper">
-      <textarea id="textInput" placeholder="Digite ou cole seu texto aqui... Ex: &quot;olá mundo!&quot;" aria-label="Texto para conversão"></textarea>
-      <span class="char-count" id="charCount">0 caracteres</span>
-    </div>
-
-    <!-- Fileira principal: MAIÚSCULAS e minúsculas -->
-    <div class="main-buttons">
-      <button class="btn-primary btn-upper" id="btnUpper">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 15 12 9 18 15"/></svg>
-        MAIÚSCULAS
-      </button>
-      <button class="btn-primary btn-lower" id="btnLower">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-        minúsculas
-      </button>
-    </div>
-
-    <!-- Segunda fileira: capitalizações especiais -->
-    <div class="transform-row">
-      <button class="btn-transform" id="btnTitle" title="Primeira letra de cada palavra em maiúscula">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16M4 4h16M12 4v16"/></svg>
-        Título
-      </button>
-      <button class="btn-transform" id="btnSentence" title="Apenas a primeira letra da frase em maiúscula">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg>
-        Frase
-      </button>
-      <button class="btn-transform" id="btnAlternating" title="Alternar entre maiúsculas e minúsculas (Ex: aLtErNaDo)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="8 14 12 10 16 14"/><polyline points="8 10 12 14 16 10"/></svg>
-        aLtErNaDo
-      </button>
-      <button class="btn-transform" id="btnInverse" title="Inverter o caso de cada letra (maiúscula ↔ minúscula)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-        Inverter
-      </button>
-    </div>
-
-    <!-- Ações utilitárias -->
-    <div class="actions-row">
-      <button class="btn-utility" id="btnCopy">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="2" width="12" height="18" rx="2"/><path d="M16 2v2H8v18H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h12Z"/></svg>
-        Copiar
-      </button>
-      <button class="btn-utility" id="btnClear">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
-        Limpar
-      </button>
-    </div>
-
-    <!-- Seção de exemplos interativos -->
-    <div class="examples-section">
-      <div class="examples-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
-        Exemplos rápidos (clique para aplicar ao texto)
-      </div>
-      <div class="example-grid" id="exampleGrid">
-        <!-- Preenchido via JS -->
+      <!-- NOMES DO GRUPO COM FOTOS (1:1) -->
+      <div class="group-members">
+        <div class="gm-label">Apresentado por</div>
+        <div class="gm-grid">
+          <div class="gm-item">
+            <img class="gm-avatar" src="eduardo.jpg" alt="Eduardo S.">
+            <span class="gm-name">Eduardo S.</span>
+          </div>
+          <div class="gm-item">
+            <img class="gm-avatar" src="davy.jpg" alt="Davy S.">
+            <span class="gm-name">Davy S.</span>
+          </div>
+          <div class="gm-item">
+            <img class="gm-avatar" src="gustavo.jpg" alt="Gustavo M.">
+            <span class="gm-name">Gustavo M.</span>
+          </div>
+        </div>
+        <div class="gm-class">Turma 1025A · Ensino Médio Técnico</div>
       </div>
     </div>
   </div>
+</section>
 
-  <script>
-    (function() {
-      // Elementos
-      const textInput = document.getElementById('textInput');
-      const charCount = document.getElementById('charCount');
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toastMsg');
-      const exampleGrid = document.getElementById('exampleGrid');
+<!-- ================= 02 · NOVA ZELÂNDIA ================= -->
+<section class="slide grain" id="s2" data-title="Nova Zelândia">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div>
+      <div class="kicker">Contexto · 01</div>
+      <h2 class="h-display h2">Música da <em>Nova Zelândia</em></h2>
+      <p class="lede" style="margin-top:16px;">
+        A Nova Zelândia tem uma cena musical forte e reconhecida internacionalmente.
+      </p>
+    </div>
 
-      // Atualizar contador
-      function updateCharCount() {
-        const len = textInput.value.length;
-        charCount.textContent = len === 1 ? '1 caractere' : `${len.toLocaleString('pt-BR')} caracteres`;
-      }
-      textInput.addEventListener('input', updateCharCount);
+    <div class="artist-grid">
+      <!-- LORDE (Foto 4:3 lorde.jpg) -->
+      <article class="artist-card royals">
+        <img class="bg-img" src="lorde.jpg" alt="Lorde" onerror="this.style.display='none'">
+        <div class="card-badge">Artista 01</div>
+        <div class="name">Lorde</div>
+        <div class="role">Cantora e compositora</div>
+        <div class="tag"><span class="brand-flag"><img src="bandeira.jpg" alt="Bandeira NZ"></span> Nova Zelândia</div>
+      </article>
 
-      // Funções de transformação
-      const transforms = {
-        upper: (t) => t.toUpperCase(),
-        lower: (t) => t.toLowerCase(),
-        title: (t) => t.replace(/\b\w/g, c => c.toUpperCase()),
-        sentence: (t) => {
-          const trimmed = t.trim();
-          if (!trimmed) return '';
-          return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
-        },
-        alternating: (t) => {
-          let result = '';
-          let upper = true;
-          for (const char of t) {
-            if (/[a-zA-Z]/.test(char)) {
-              result += upper ? char.toUpperCase() : char.toLowerCase();
-              upper = !upper;
-            } else {
-              result += char;
-            }
-          }
-          return result;
-        },
-        inverse: (t) => {
-          let res = '';
-          for (const c of t) {
-            res += c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase();
-          }
-          return res;
-        }
-      };
+      <!-- SPLIT ENZ (Foto 4:3 splitenz.jpg) -->
+      <article class="artist-card enz">
+        <img class="bg-img" src="splitenz.jpg" alt="Split Enz" onerror="this.style.display='none'">
+        <div class="card-badge">Artista 02</div>
+        <div class="name">Split Enz</div>
+        <div class="role">Banda de rock / new wave</div>
+        <div class="tag"><span class="brand-flag"><img src="bandeira.jpg" alt="Bandeira NZ"></span> Nova Zelândia</div>
+      </article>
+    </div>
+  </div>
+</section>
 
-      function applyTransform(transformKey) {
-        const val = textInput.value;
-        if (!val.trim()) {
-          showToast('Digite algum texto primeiro!', '#f59e0b');
-          textInput.focus();
-          return;
-        }
-        textInput.value = transforms[transformKey](val);
-        updateCharCount();
-        textInput.focus();
-      }
+<!-- ================= 03 · O QUE É PRESENT PERFECT ================= -->
+<section class="slide grain" id="s3" data-title="O que é Present Perfect">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div>
+      <div class="kicker">Base gramatical · 02</div>
+      <h2 class="h-display h2">O que é o <em>Present Perfect</em>?</h2>
+    </div>
 
-      // Botões
-      document.getElementById('btnUpper').addEventListener('click', () => applyTransform('upper'));
-      document.getElementById('btnLower').addEventListener('click', () => applyTransform('lower'));
-      document.getElementById('btnTitle').addEventListener('click', () => applyTransform('title'));
-      document.getElementById('btnSentence').addEventListener('click', () => applyTransform('sentence'));
-      document.getElementById('btnAlternating').addEventListener('click', () => applyTransform('alternating'));
-      document.getElementById('btnInverse').addEventListener('click', () => applyTransform('inverse'));
+    <div class="formula-wrap">
+      <div class="formula">
+        <span class="formula-part aux">HAVE</span>
+        <span class="formula-part plus">/</span>
+        <span class="formula-part aux">HAS</span>
+        <span class="formula-part plus">+</span>
+        <span class="formula-part pp">PAST</span>
+        <span class="formula-part participle">PARTICIPLE</span>
+      </div>
+      <div class="formula-underline"></div>
 
-      // Copiar
-      document.getElementById('btnCopy').addEventListener('click', () => {
-        const val = textInput.value;
-        if (!val.trim()) {
-          showToast('Nada para copiar!', '#f59e0b');
-          return;
-        }
-        navigator.clipboard.writeText(val).then(() => {
-          showToast('✅ Texto copiado!', '#4ade80');
-        }).catch(() => {
-          textInput.select();
-          document.execCommand('copy');
-          showToast('✅ Texto copiado!', '#4ade80');
-        });
-      });
+      <div class="examples-row">
+        <div class="example-box">
+          <div class="ex">I <span>have seen</span>.</div>
+          <div class="lbl">I / You / We / They</div>
+        </div>
+        <div class="example-box">
+          <div class="ex">She <span>has imagined</span>.</div>
+          <div class="lbl">He / She / It</div>
+        </div>
+      </div>
 
-      // Limpar
-      document.getElementById('btnClear').addEventListener('click', () => {
-        if (!textInput.value.trim()) {
-          showToast('Já está vazio!', '#f59e0b');
-          return;
-        }
-        textInput.value = '';
-        updateCharCount();
-        textInput.focus();
-        showToast('🧹 Texto limpo!', '#a0a0b8');
-      });
+      <div class="timeline-h">
+        <div class="timeline-h-track"></div>
+        <div class="timeline-h-labels">
+          <span>Passado</span>
+          <span>Presente</span>
+        </div>
+      </div>
 
-      // Toast
-      let toastTimer;
-      function showToast(message, dotColor = '#4ade80') {
-        clearTimeout(toastTimer);
-        toastMsg.textContent = message;
-        toast.querySelector('.dot').style.background = dotColor;
-        toast.classList.add('show');
-        toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-      }
+      <p class="formula-note">
+        O Present Perfect conecta uma <em>ação ou experiência passada</em> ao momento presente.
+      </p>
 
-      // Exemplos interativos
-      const sampleText = "olá mundo! como vai você?";
-      const exampleLabels = {
-        upper: 'MAIÚSCULAS',
-        lower: 'minúsculas',
-        title: 'Título',
-        sentence: 'Frase',
-        alternating: 'aLtErNaDo',
-        inverse: 'Invertido'
-      };
+      <button class="reveal-btn" onclick="toggleReveal('reveal-verbs', this)">
+        Ver mais verbos irregulares comuns
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+      <div class="reveal-content" id="reveal-verbs">
+        <div class="irregular-table">
+          <div class="head">Base</div>
+          <div class="head">Simple Past</div>
+          <div class="head">Past Participle</div>
 
-      function renderExamples() {
-        exampleGrid.innerHTML = '';
-        Object.entries(transforms).forEach(([key, func]) => {
-          const transformed = func(sampleText);
-          const card = document.createElement('div');
-          card.className = 'example-card';
-          card.innerHTML = `<div class="label">${exampleLabels[key]}</div><div class="value">${escapeHTML(transformed)}</div>`;
-          card.addEventListener('click', () => {
-            textInput.value = transformed;
-            updateCharCount();
-            showToast(`✨ Texto aplicado: ${exampleLabels[key]}`, '#7c5cfc');
-            textInput.focus();
-          });
-          exampleGrid.appendChild(card);
-        });
-      }
+          <div>see</div><div>saw</div><div class="col-pp">seen</div>
+          <div>imagine</div><div>imagined</div><div class="col-pp">imagined</div>
+          <div>be</div><div>was / were</div><div class="col-pp">been</div>
+          <div>go</div><div>went</div><div class="col-pp">gone</div>
+          <div>do</div><div>did</div><div class="col-pp">done</div>
+          <div>have</div><div>had</div><div class="col-pp">had</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      function escapeHTML(str) {
-        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-      }
+<!-- ================= 04 · QUANDO USAR ================= -->
+<section class="slide grain" id="s4" data-title="Quando usar">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div>
+      <div class="kicker">Gramática · 03</div>
+      <h2 class="h-display h2">Quando usar o <em>Present Perfect</em>?</h2>
+      <p class="lede" style="margin-top:14px;">
+        Três situações principais — e as duas músicas usam a <strong style="color:var(--gold);font-weight:500;">primeira</strong>.
+      </p>
+    </div>
 
-      renderExamples();
+    <div class="uses-grid">
+      <article class="use-card">
+        <div class="num">01</div>
+        <div class="title">Experiências de vida</div>
+        <div class="desc">
+          Não importa <em>quando</em> aconteceu — importa se já aconteceu alguma vez até agora.
+        </div>
+        <div class="example">“I've never seen a diamond.”</div>
+      </article>
 
-      // Atalhos
-      document.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
-          const key = e.key.toUpperCase();
-          if (key === 'U') { e.preventDefault(); applyTransform('upper'); }
-          else if (key === 'L') { e.preventDefault(); applyTransform('lower'); }
-          else if (key === 'T') { e.preventDefault(); applyTransform('title'); }
-          else if (key === 'S') { e.preventDefault(); applyTransform('sentence'); }
-          else if (key === 'A') { e.preventDefault(); applyTransform('alternating'); }
-          else if (key === 'I') { e.preventDefault(); applyTransform('inverse'); }
-        }
-      });
+      <article class="use-card">
+        <div class="num">02</div>
+        <div class="title">Ações recentes com efeito agora</div>
+        <div class="desc">
+          Algo aconteceu há pouco tempo e o resultado ainda é visível ou relevante no presente.
+        </div>
+        <div class="example">“I have just finished my homework.”</div>
+      </article>
 
-      // Partículas
-      function createParticles() {
-        const container = document.getElementById('particles');
-        const colors = ['#7c5cfc','#ff6b9d','#2dd4bf','#f59e0b','#9b7bff'];
-        for (let i=0; i<40; i++) {
-          const p = document.createElement('div');
-          p.className = 'particle';
-          const size = Math.random()*5 + 2;
-          p.style.width = size+'px';
-          p.style.height = size+'px';
-          p.style.background = colors[Math.floor(Math.random()*colors.length)];
-          p.style.left = Math.random()*100+'%';
-          p.style.animationDuration = (Math.random()*15 + 12)+'s';
-          p.style.animationDelay = Math.random()*12+'s';
-          container.appendChild(p);
-        }
-      }
-      createParticles();
-      updateCharCount();
-    })();
-  </script>
+      <article class="use-card">
+        <div class="num">03</div>
+        <div class="title">Ações que continuam até hoje</div>
+        <div class="desc">
+          Começou no passado e ainda está acontecendo (geralmente com <em>for</em> ou <em>since</em>).
+        </div>
+        <div class="example">“I have lived here for 5 years.”</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · ROYALS ================= -->
+<section class="slide song grain" id="s6" data-title="Royals — Lorde">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div class="song-head">
+      <div class="song-head-left">
+        <img class="artist-avatar" src="lorde.jpg" alt="Lorde" onerror="this.style.visibility='hidden';">
+        <div>
+          <div class="song-tag">Análise musical · 04</div>
+          <h2 class="song-title h-display">Roy<em>als</em></h2>
+        </div>
+      </div>
+      <div class="song-num">01</div>
+    </div>
+
+    <div class="song-body">
+      <div>
+        <div class="player-card">
+          <div class="player-cover royals">
+            <img class="cover-art" src="pureheroinealbum.jpg" alt="Capa Pure Heroine" onerror="this.remove()">
+            <div class="cover-mark">R</div>
+            <div class="cover-genre">Lorde · 2013</div>
+            <button class="player-btn" data-audio="audio-royals" onclick="toggleAudio('audio-royals', 9, this)" aria-label="Reproduzir trecho de Royals">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            </button>
+            <div class="player-meta">
+              <div class="info">
+                <div class="t">Royals</div>
+                <div class="a">Lorde</div>
+              </div>
+              <div class="badge">▶ 0:09</div>
+            </div>
+          </div>
+          <audio id="audio-royals" src="musica1.mp3" preload="metadata"></audio>
+        </div>
+        <div class="player-error" id="err-royals">
+          ⚠ Arquivo <b>musica1.mp3</b> não encontrado. Coloque-o na mesma pasta deste HTML.
+        </div>
+      </div>
+
+      <div class="lyric-panel">
+        <div class="lyric-bar">
+          <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="lbl">Trecho da música</div>
+          <div class="verb-chain-inline">
+            <span>SEE</span><span class="arr">→</span><span>SAW</span><span class="arr">→</span><span>SEEN</span>
+          </div>
+        </div>
+
+        <div class="lyric-line">
+          <span class="hot" tabindex="0" role="button" aria-label="I have">
+            I've
+            <span class="pop">I've = I have</span>
+          </span>
+          <span class="plain"> never </span>
+          <span class="hot" tabindex="0" role="button" aria-label="Particípio passado de see">
+            seen
+            <span class="pop">Particípio passado de <b>SEE</b></span>
+          </span>
+          <span class="plain"> a diamond in the flesh.</span>
+        </div>
+
+        <div class="hint-row">
+          <span class="dotpulse"></span>
+          Toque nas palavras destacadas
+        </div>
+
+        <div class="verb-chain">
+          <span class="lbl">Cadeia verbal</span>
+          <span class="verb base">SEE</span>
+          <span class="verb-arrow">→</span>
+          <span class="verb past">SAW</span>
+          <span class="verb-arrow">→</span>
+          <span class="verb pp">SEEN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 · ANÁLISE ROYALS ================= -->
+<section class="slide grain" id="s7" data-title="Royals — Análise">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div>
+      <div class="kicker purple">Detalhamento gramatical · Royals</div>
+      <h2 class="h-display h2" style="font-size:clamp(28px,3.4vw,52px);">“I've never seen”</h2>
+    </div>
+
+    <div class="blocks-row" style="margin-top:clamp(20px,3vh,30px);">
+      <span class="blk pron">I</span>
+      <span class="blk-op">+</span>
+      <span class="blk aux">HAVE</span>
+      <span class="blk-op">+</span>
+      <span class="blk neg">NEVER</span>
+      <span class="blk-op">+</span>
+      <span class="blk verb">SEEN</span>
+    </div>
+
+    <div style="margin-bottom:clamp(20px,3vh,32px);">
+      <span class="chip">✓ Present Perfect</span>
+    </div>
+
+    <div class="analysis-grid">
+      <div>
+        <div class="note-card">
+          <p>
+            <em>“I've never seen”</em> descreve uma experiência de vida que
+            <em>não aconteceu</em> até o presente.
+          </p>
+        </div>
+
+        <div class="vs-card">
+          <div class="vs-row pp">
+            <span class="vs-ex">I <b>have never seen</b>...</span>
+            <span class="vs-tag">Present Perfect</span>
+          </div>
+          <div class="vs-row sp">
+            <span class="vs-ex">I <b>saw</b>...</span>
+            <span class="vs-tag">Simple Past</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="v-timeline">
+        <div class="vt-node past">
+          <span class="bullet"></span>
+          <div>
+            <div class="vt-label">Sem momento específico</div>
+            <div class="vt-text">O tempo exato não é mencionado</div>
+          </div>
+        </div>
+        <div class="vt-line"></div>
+        <div class="vt-node pres">
+          <span class="bullet"></span>
+          <div>
+            <div class="vt-label">Até agora</div>
+            <div class="vt-text">Verdadeiro por toda a vida dela — até hoje</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 · I GOT YOU ================= -->
+<section class="slide song grain" id="s8" data-title="I Got You — Split Enz">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div class="song-head">
+      <div class="song-head-left">
+        <img class="artist-avatar" src="splitenz.jpg" alt="Split Enz" onerror="this.style.visibility='hidden';">
+        <div>
+          <div class="song-tag">Análise musical · 05</div>
+          <h2 class="song-title h-display">I Got <em>You</em></h2>
+        </div>
+      </div>
+      <div class="song-num">02</div>
+    </div>
+
+    <div class="song-body">
+      <div>
+        <div class="player-card">
+          <div class="player-cover enz">
+            <img class="cover-art" src="truecolorsalbum.jpg" alt="Capa True Colors" onerror="this.remove()">
+            <div class="cover-mark">TC</div>
+            <div class="cover-genre">Split Enz · 1980</div>
+            <button class="player-btn" data-audio="audio-split" onclick="toggleAudio('audio-split', 62, this)" aria-label="Reproduzir trecho de I Got You">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            </button>
+            <div class="player-meta">
+              <div class="info">
+                <div class="t">I Got You</div>
+                <div class="a">Split Enz</div>
+              </div>
+              <div class="badge">▶ 1:02</div>
+            </div>
+          </div>
+          <audio id="audio-split" src="musica2.mp3" preload="metadata"></audio>
+        </div>
+        <div class="player-error" id="err-split">
+          ⚠ Arquivo <b>musica2.mp3</b> não encontrado. Coloque-o na mesma pasta deste HTML.
+        </div>
+      </div>
+
+      <div class="lyric-panel">
+        <div class="lyric-bar">
+          <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="lbl">Trecho da música</div>
+          <div class="verb-chain-inline">
+            <span>IMAGINE</span><span class="arr">→</span><span>IMAGINED</span>
+          </div>
+        </div>
+
+        <div class="lyric-line">
+          <span class="plain">You're everything that </span>
+          <span class="hot" tabindex="0" role="button" aria-label="I have">
+            I've
+            <span class="pop">I've = I have</span>
+          </span>
+          <span class="hot" tabindex="0" role="button" aria-label="Particípio passado de imagine">
+            imagined
+            <span class="pop">Particípio passado de <b>IMAGINE</b></span>
+          </span>
+          <span class="plain">.</span>
+        </div>
+
+        <div class="hint-row">
+          <span class="dotpulse"></span>
+          Toque nas palavras destacadas
+        </div>
+
+        <div class="verb-chain">
+          <span class="lbl">Cadeia verbal</span>
+          <span class="verb base">IMAGINE</span>
+          <span class="verb-arrow">→</span>
+          <span class="verb past">IMAGINED</span>
+          <span class="verb-arrow">→</span>
+          <span class="verb pp">IMAGINED</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 · ANÁLISE I GOT YOU ================= -->
+<section class="slide grain" id="s9" data-title="I Got You — Análise">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div>
+      <div class="kicker red">Detalhamento gramatical · I Got You</div>
+      <h2 class="h-display h2" style="font-size:clamp(28px,3.4vw,52px);">Por que é <em>Present Perfect</em>?</h2>
+    </div>
+
+    <div class="blocks-row" style="margin-top:clamp(20px,3vh,30px);">
+      <span class="blk pron">I</span>
+      <span class="blk-op">+</span>
+      <span class="blk aux">HAVE</span>
+      <span class="blk-op">+</span>
+      <span class="blk verb">IMAGINED</span>
+    </div>
+
+    <div style="margin-bottom:clamp(20px,3vh,32px);">
+      <span class="chip">✓ Present Perfect</span>
+    </div>
+
+    <div class="analysis-grid">
+      <div>
+        <div class="note-card">
+          <p>
+            O cantor conecta algo que ele <em>imaginou no passado</em>
+            com a pessoa ou situação <em>no presente</em>.
+          </p>
+        </div>
+
+        <div class="vs-card">
+          <div class="vs-row pp">
+            <span class="vs-ex">I <b>have imagined</b>...</span>
+            <span class="vs-tag">Present Perfect</span>
+          </div>
+          <div class="vs-row sp">
+            <span class="vs-ex">I <b>imagined</b>...</span>
+            <span class="vs-tag">Simple Past</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="v-timeline">
+        <div class="vt-node past">
+          <span class="bullet"></span>
+          <div>
+            <div class="vt-label">Passado</div>
+            <div class="vt-text">“I imagined”</div>
+          </div>
+        </div>
+        <div class="vt-line"></div>
+        <div class="vt-node pres">
+          <span class="bullet"></span>
+          <div>
+            <div class="vt-label">Presente</div>
+            <div class="vt-text">“You're everything...”</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 · COMPARAÇÃO ================= -->
+<section class="slide grain" id="s10" data-title="Comparação">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div>
+      <div class="kicker">Comparação · 06</div>
+      <h2 class="h-display h2" style="font-size:clamp(28px,3.6vw,54px);">
+        Mesma estrutura, <em>significados diferentes</em>
+      </h2>
+    </div>
+
+    <div class="compare-grid">
+      <article class="cmp-card royals">
+        <div class="glow-card"></div>
+        <div class="cm-song">Royals</div>
+        <div class="cm-artist">Lorde</div>
+        <div class="cm-quote">“I've <em>never seen</em>”</div>
+        <div class="cm-desc">Uma experiência de vida que nunca aconteceu.</div>
+        <div class="cm-struct"><b>HAVE</b> + SEEN</div>
+      </article>
+
+      <article class="cmp-card enz">
+        <div class="glow-card"></div>
+        <div class="cm-song">I Got You</div>
+        <div class="cm-artist">Split Enz</div>
+        <div class="cm-quote">“I've <em>imagined</em>”</div>
+        <div class="cm-desc">Uma imaginação passada conectada ao presente.</div>
+        <div class="cm-struct"><b>HAVE</b> + IMAGINED</div>
+      </article>
+    </div>
+
+    <div class="center-formula">
+      <span class="cf aux">HAVE</span>
+      <span class="cf plus">+</span>
+      <span class="cf pp">PAST PARTICIPLE</span>
+    </div>
+
+    <p class="conclusion-line">
+      Ambos os exemplos conectam <em>o passado</em> ao <em>presente</em>.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 10 · ERROS COMUNS ================= -->
+<section class="slide grain" id="s11" data-title="Erros comuns">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div>
+      <div class="kicker">Atenção · 07</div>
+      <h2 class="h-display h2" style="font-size:clamp(28px,3.6vw,54px);">
+        Erros <em>comuns</em> em português
+      </h2>
+      <p class="lede" style="margin-top:14px;">
+        Falantes de português costumam confundir Present Perfect com Simple Past. Veja a diferença.
+      </p>
+    </div>
+
+    <div class="mistakes-grid">
+      <div class="mistake-card">
+        <div class="mistake-side wrong">
+          <div class="who">✕ Errado</div>
+          <div class="sentence">I have seen him yesterday.</div>
+          <div class="mistake-note">“Yesterday” já especifica quando — pede Simple Past.</div>
+        </div>
+        <div class="mistake-mid">→</div>
+        <div class="mistake-side right">
+          <div class="who">✓ Correto</div>
+          <div class="sentence">I saw him yesterday.</div>
+        </div>
+      </div>
+
+      <div class="mistake-card">
+        <div class="mistake-side wrong">
+          <div class="who">✕ Errado</div>
+          <div class="sentence">I have went to London.</div>
+          <div class="mistake-note">Depois de HAVE/HAS usamos o <em>particípio</em>, não o Simple Past.</div>
+        </div>
+        <div class="mistake-mid">→</div>
+        <div class="mistake-side right">
+          <div class="who">✓ Correto</div>
+          <div class="sentence">I have gone to London.</div>
+        </div>
+      </div>
+
+      <div class="mistake-card">
+        <div class="mistake-side wrong">
+          <div class="who">✕ Errado</div>
+          <div class="sentence">She has never saw the ocean.</div>
+          <div class="mistake-note">“Saw” é Simple Past — o particípio correto é “seen”.</div>
+        </div>
+        <div class="mistake-mid">→</div>
+        <div class="mistake-side right">
+          <div class="who">✓ Correto</div>
+          <div class="sentence">She has never seen the ocean.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 · QUIZ ================= -->
+<section class="slide grain" id="s12" data-title="Quiz rápido">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div class="quiz-wrap">
+      <div>
+        <div class="kicker">Verificação rápida · 08</div>
+        <h2 class="h-display h2" style="font-size:clamp(26px,3.2vw,48px);">
+          Você consegue identificar o <em>Present Perfect</em>?
+        </h2>
+      </div>
+
+      <p class="quiz-question" style="margin-top:26px;">Qual frase está no <em>Present Perfect</em>?</p>
+
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answerQuiz(this,false)">
+          <span class="letter">A</span>
+          <span class="q-text">I saw a diamond.</span>
+        </button>
+        <button class="quiz-option" onclick="answerQuiz(this,true)">
+          <span class="letter">B</span>
+          <span class="q-text">I have seen a diamond.</span>
+        </button>
+      </div>
+
+      <div class="quiz-feedback" id="quizFeedback" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12 · CONCLUSÃO ================= -->
+<section class="slide grain" id="s13" data-title="Conclusão">
+  <div class="glow"></div>
+  <div class="slide-inner">
+    <div class="conc-wrap">
+
+      <div class="conc-kicker">Passado → Presente</div>
+
+      <div class="conc-songs">
+        <div class="conc-song royals">
+          <div class="cs-name">Royals · Lorde</div>
+          <div class="cs-quote">“I've <em>never seen</em>”</div>
+        </div>
+        <div class="conc-amp">✳</div>
+        <div class="conc-song enz">
+          <div class="cs-name">I Got You · Split Enz</div>
+          <div class="cs-quote">“I've <em>imagined</em>”</div>
+        </div>
+      </div>
+
+      <div class="conc-flow">
+        <div class="conc-arrow">↓</div>
+        <div class="conc-pill">Present Perfect</div>
+        <div class="conc-arrow">↓</div>
+      </div>
+
+      <p class="conc-statement">
+        <em>Experiências passadas</em> conectadas ao presente.
+      </p>
+
+      <div class="conc-final">
+        <span class="conc-thanks">Obrigado!</span>
+        <span class="conc-flag"><img src="bandeira.jpg" alt="Bandeira NZ"></span>
+      </div>
+
+      <!-- NOMES DO GRUPO -->
+      <div class="conc-group">
+        <div class="names">
+          Eduardo S. · Davy S. · Gustavo M.
+        </div>
+        <div class="class">Turma 1025A · Grupo 8</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="bottombar">
+  <button class="nav-btn" id="prevBtn" onclick="go(current-1)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M11 18l-6-6 6-6"/>
+    </svg>
+    <span>Anterior</span>
+  </button>
+
+  <div class="nav-hint">
+    Use <kbd>←</kbd> <kbd>→</kbd> ou <kbd>Espaço</kbd> · <kbd>F</kbd> tela cheia
+  </div>
+
+  <button class="nav-btn primary" id="nextBtn" onclick="go(current+1)">
+    <span>Próximo</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </svg>
+  </button>
+</footer>
+
+<script>
+/* ==========================================================
+   SLIDE ENGINE
+   ========================================================== */
+const slides = Array.from(document.querySelectorAll('.slide'));
+const total = slides.length;
+let current = 0;
+
+const progressFill = document.getElementById('progressFill');
+const curNum = document.getElementById('curNum');
+const totNum = document.getElementById('totNum');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+totNum.textContent = String(total).padStart(2, '0');
+
+function go(index) {
+  if (index < 0 || index >= total) return;
+  if (index === current) return;
+
+  pauseAllAudio();
+
+  slides[current].classList.remove('active');
+  current = index;
+  slides[current].classList.add('active');
+  slides[current].scrollTop = 0;
+  updateUI();
+}
+
+function updateUI() {
+  progressFill.style.width = ((current + 1) / total * 100) + '%';
+  curNum.textContent = String(current + 1).padStart(2, '0');
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === total - 1;
+}
+
+/* ==========================================================
+   TIMER (cronômetro)
+   ========================================================== */
+let timerInterval = null;
+let timerSeconds = 0;
+let timerRunning = false;
+
+const timerEl = document.getElementById('timer');
+const timerDisplay = document.getElementById('timerDisplay');
+
+function startTimer() {
+  if (timerRunning) return;
+  timerRunning = true;
+  timerEl.classList.add('active');
+  timerInterval = setInterval(() => {
+    timerSeconds++;
+    const m = Math.floor(timerSeconds / 60);
+    const s = timerSeconds % 60;
+    timerDisplay.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }, 1000);
+}
+
+timerEl.addEventListener('click', () => {
+  if (confirm('Zerar o cronômetro?')) {
+    timerSeconds = 0;
+    timerDisplay.textContent = '00:00';
+  }
+});
+
+/* ==========================================================
+   TECLADO
+   ========================================================== */
+document.addEventListener('keydown', (e) => {
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea') return;
+
+  switch (e.key) {
+    case 'ArrowRight':
+    case 'PageDown':
+    case ' ':
+      e.preventDefault();
+      go(current + 1);
+      break;
+    case 'ArrowLeft':
+    case 'PageUp':
+      e.preventDefault();
+      go(current - 1);
+      break;
+    case 'Home':
+      e.preventDefault(); go(0); break;
+    case 'End':
+      e.preventDefault(); go(total - 1); break;
+    case 'f': case 'F':
+      e.preventDefault(); toggleFullscreen(); break;
+  }
+});
+
+/* ==========================================================
+   FULLSCREEN
+   ========================================================== */
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    (document.documentElement.requestFullscreen ||
+     document.documentElement.webkitRequestFullscreen ||
+     function(){}).call(document.documentElement);
+  } else {
+    (document.exitFullscreen || document.webkitExitFullscreen || function(){}).call(document);
+  }
+}
+document.getElementById('fsBtn').addEventListener('click', toggleFullscreen);
+
+/* ==========================================================
+   ÁUDIO LOCAL
+   ========================================================== */
+function pauseAllAudio() {
+  document.querySelectorAll('audio').forEach(a => {
+    a.pause();
+    const btn = document.querySelector(`.player-btn[data-audio="${a.id}"]`);
+    if (btn) btn.classList.remove('playing');
+  });
+}
+
+function toggleAudio(audioId, startTime, btn) {
+  const audio = document.getElementById(audioId);
+  if (!audio) return;
+
+  document.querySelectorAll('audio').forEach(a => {
+    if (a.id !== audioId) {
+      a.pause();
+      const b = document.querySelector(`.player-btn[data-audio="${a.id}"]`);
+      if (b) b.classList.remove('playing');
+    }
+  });
+
+  const isPlaying = !audio.paused;
+
+  if (isPlaying) {
+    audio.pause();
+    btn.classList.remove('playing');
+  } else {
+    const needsJump = audio.currentTime < startTime - 1 || audio.currentTime > startTime + 3;
+    if (needsJump) {
+      try { audio.currentTime = startTime; } catch(e) {}
+    }
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => { btn.classList.add('playing'); hideError(audioId); })
+        .catch(err => { console.warn('Erro ao tocar áudio:', err); showError(audioId); });
+    }
+  }
+}
+
+['audio-royals', 'audio-split'].forEach(id => {
+  const audio = document.getElementById(id);
+  if (!audio) return;
+  audio.addEventListener('error', () => showError(id));
+});
+
+function showError(audioId) {
+  const map = { 'audio-royals': 'err-royals', 'audio-split': 'err-split' };
+  const el = document.getElementById(map[audioId]);
+  if (el) el.classList.add('show');
+}
+function hideError(audioId) {
+  const map = { 'audio-royals': 'err-royals', 'audio-split': 'err-split' };
+  const el = document.getElementById(map[audioId]);
+  if (el) el.classList.remove('show');
+}
+
+/* ==========================================================
+   PALAVRAS INTERATIVAS
+   ========================================================== */
+document.querySelectorAll('.hot').forEach(word => {
+  word.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const wasOpen = word.classList.contains('open');
+    document.querySelectorAll('.hot.open').forEach(w => w.classList.remove('open'));
+    if (!wasOpen) word.classList.add('open');
+  });
+  word.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      word.click();
+    }
+  });
+});
+document.addEventListener('click', () => {
+  document.querySelectorAll('.hot.open').forEach(w => w.classList.remove('open'));
+});
+
+/* ==========================================================
+   QUIZ
+   ========================================================== */
+function answerQuiz(el, isCorrect) {
+  const fb = document.getElementById('quizFeedback');
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  fb.classList.remove('good', 'bad', 'show');
+  void fb.offsetWidth;
+
+  if (isCorrect) {
+    fb.classList.add('good', 'show');
+    fb.innerHTML = '<strong>Correto! ✓</strong> &nbsp; HAVE + PAST PARTICIPLE — a experiência passada se conecta ao presente.';
+  } else {
+    fb.classList.add('bad', 'show');
+    fb.innerHTML = '<strong>Quase.</strong> &nbsp; “I saw” é Simple Past — ação concluída em um momento específico do passado.';
+  }
+}
+
+/* ==========================================================
+   REVELAR EXTRA
+   ========================================================== */
+function toggleReveal(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const open = el.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+
+/* ==========================================================
+   INIT
+   ========================================================== */
+updateUI();
+</script>
 </body>
 </html>
